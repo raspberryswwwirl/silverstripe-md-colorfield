@@ -58,5 +58,8 @@ composer.lock
 /resources/
 /resources/*
 
+# js/css preprocessors
+*.map
+
 # vscode
 .vscode
