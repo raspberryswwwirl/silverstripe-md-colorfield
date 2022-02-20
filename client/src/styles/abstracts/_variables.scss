@@ -1,0 +1,179 @@
+// ---------------------------------------------------------- //
+// FONT STACKS
+// ---------------------------------------------------------- //
+$fonts-serif:                   "Georgia", "Times New Roman", Arial, serif;
+$fonts-sans-serif:              Helvetica, Arial, sans-serif;
+$fonts-brand:                   'Open Sans', sans-serif;
+$fonts-headings:                sans-serif;
+$fonts-monospace:               Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+
+// ---------------------------------------------------------- //
+// MEDIA QUERIES: COMMON BREAKPOINTS
+// ---------------------------------------------------------- //
+$MQ1:                           1em;
+$MQ375:                         23.4375em;
+$MQ425:                         26.5625em;
+$MQ480:                         30em;
+$MQ600:                         37.5em;
+$MQ640:                         40em;
+$MQ768:                         48em;
+$MQ840:                         52.5em;
+$MQ960:                         60em;
+$MQ1024:                        64em;
+$MQ1152:                        72em;
+$MQ1280:                        80em;
+$MQ1440:                        90em;
+$MQ1600:                        100em;
+$MQ1920:                        120em;
+
+// ---------------------------------------------------------- //
+// COLORS: APP
+// ---------------------------------------------------------- //
+$white                          : rgb(255,255,255);
+$black                          : #000000;
+$app-base-color                 : rgb(250, 250, 250);
+$pink                           : #ff00ff;
+$baseline-grid                  : #1da1ff;
+
+// ---------------------------------------------------------- //
+// COLORS: UTILITY
+// ---------------------------------------------------------- //
+$warning                        : #ff9800;
+$error                          : #f44336;
+$info                           : #2196f3;
+$success                        : #4caf50;
+
+// ---------------------------------------------------------- //
+// COLORS: MATERIAL
+// ---------------------------------------------------------- //
+$md-grey-50                     : #f6f7fd;
+$md-blue-50                     : #12509e;
+$md-blue-100                    : #241568;
+$md-blue-200                    : #300158;
+
+$md-teal-50                     : #34b1c7;
+$md-teal-100                    : #9de0d5;
+$md-teal-200                    : lighten(#9de0d5, 10%);
+
+$md-green-50                    : #239d98;
+$md-green-100                   : #0cb4ad;
+$md-green-200                   : #3ad28b;
+
+$md-orange-100                  : rgb(255,160,57);
+$md-orange-200                  : rgb(235,103,48);
+
+$md-purple-50                   : #33314e;
+$md-purple-100                  : #27263d;
+$md-purple-200                  : #1b1930;
+$md-purple-300                  : #1b192f;
+
+// ---------------------------------------------------------- //
+// GREYS
+// ---------------------------------------------------------- //
+$md-grey-100                    : rgb(87,87,87);
+$md-grey-200                    : rgb(178,178,178);
+$md-grey-300                    : rgb(201,201,201);
+$md-grey-400                    : rgb(240,240,240);
+
+$md-grey-alt-50                 : #f7f8f9;
+$md-grey-alt-100                : #212121;
+$md-grey-alt-200                : #545454;
+
+// ---------------------------------------------------------- //
+// TYPOGRAPHIC CONSTANTS
+// ---------------------------------------------------------- //
+$typography-basefontsize        : 16px;
+$typography-baselineheight      : 24px;
+$typography-baseline            : abs($typography-basefontsize * .5);
+$typography-ratio               : 1.58;
+
+$md-color-primary               : $md-purple-50;
+$md-color-primary-dark          : $md-purple-100;
+$md-color-primary-light         : $md-purple-300;
+
+$md-color-secondary             : $md-green-50;
+$md-color-secondary-alt         : $md-green-200;
+$md-color-secondary-dark        : $md-blue-200;
+$md-color-secondary-light       : $md-blue-50;
+
+$md-text-color                  : #212121;
+$md-text-color-light            : #545454;
+
+$md-text-color-primary          : $white;
+$md-text-color-secondary        : $white;
+$md-accent-color                : $md-teal-50;
+$md-divider-color               : fade($black, 12%);
+
+$md-loading-color               : #F7F7F7;
+
+// ---------------------------------------------------------- //
+// SS COLORS
+// ---------------------------------------------------------- //
+$ss-red                         : #da273b;
+$ss-dark                        : #303b4d;
+$ss-light                       : #eef0f4;
+
+$ss-blue-50                     : #0071c4;
+$ss-blue-100                    : #005a93;
+
+$ss-grey-50                     : #ebeef2;
+$ss-grey-100                    : #ced5e1;
+$ss-grey-200                    : #566b8d;
+$ss-table-border                : #dbe0e9;
+
+// ---------------------------------------------------------- //
+// GRID
+// ---------------------------------------------------------- //
+$XCOLUMNS: 12;
+$XSPACING: 4;
+
+// ---------------------------------------------------------- //
+// MEDIA QUERY BREAKPOINTS
+// ---------------------------------------------------------- //
+$breakpoints: (
+    "phone-xsmall":     320px,
+    "phone":            400px,
+    "phone-wide":       480px,
+    "phablet":          560px,
+    "tablet-xsmall":    600px,
+    "tablet-small":     640px,
+    "tablet":           768px,
+    "tablet-wide":      1024px,
+    "desktop":          1280px,
+    "desktop-m":        1440px,
+    "desktop-l":        1600px,
+    "desktop-xl":       1920px,
+    "desktop-xxl":      2500px
+);
+
+// ---------------------------------------------------------- //
+// ROUNDED CORNERS
+// ---------------------------------------------------------- //
+$radius-xxs                     : .125rem;
+$radius-xs                      : .25rem;
+$radius-s                       : .5rem;
+$radius-m                       : .875rem;
+$radius-l                       : 1rem;
+
+// ---------------------------------------------------------- //
+// MATERIAL ELEVATION
+// ---------------------------------------------------------- //
+$md-box-shadow-2                : fade($md-purple-50,20%);
+$md-box-shadow-12               : fade($md-purple-50,12%);
+$md-box-shadow-14               : fade($md-purple-50,14%);
+
+// ---------------------------------------------------------- //
+// LAYOUT UNITS
+// ---------------------------------------------------------- //
+$XUNIT                          : 24px;
+$md-button-radius               : 0;//3px;
+$md-field-radius                : 3px;
+
+// ---------------------------------------------------------- //
+// COMPONENT CONSTANTS
+// ---------------------------------------------------------- //
+$app-max-width                  : 1284px;
+$app-max-width-thin             : 768px;
+$app-max-width-narrow           : 1068px;
+$appbar-xunit                   : 64px;
+$appbar-height                  : $appbar-xunit;
