@@ -57,3 +57,6 @@ composer.lock
 /vendor/
 /resources/
 /resources/*
+
+# vscode
+.vscode
