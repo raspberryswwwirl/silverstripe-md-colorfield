@@ -35,7 +35,7 @@ export default defineConfig({
     optimizeDeps:{
         esbuildOptions:{
             plugins:[
-                esbuildCommonjs(['sstinymce_plugins','vendor','main']) 
+                esbuildCommonjs(['vendor','main']) 
             ]
         }
     },    
