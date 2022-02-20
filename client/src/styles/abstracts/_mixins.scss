@@ -1,0 +1,561 @@
+// ---------------------------------------------------------- //
+// ROOT
+// ---------------------------------------------------------- //
+@mixin root(){
+    @at-root :root {
+        @content;
+    }
+}
+
+@mixin root-attr( $attr, $attr-val ){
+    @at-root html[#{$attr}="#{$attr-val}"] & {
+        @content;
+    }
+}
+
+@mixin root-element(){
+    &:root {
+        @content;
+    }
+}
+
+@mixin root-view( $viewname ){
+    @at-root html[data-view="${viewname}"] & {
+        @content;
+    }
+}
+
+@mixin ie() {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @content;
+    }
+}
+
+// ---------------------------------------------------------- //
+// FONT FACE
+// ---------------------------------------------------------- //
+@mixin font-face($family, $directory, $typeface) {
+    font-family: "#{$family}";
+    src: url('@/fonts/#{$directory}/#{$typeface}.woff2') format('woff2');
+    src: url('@/fonts/#{$directory}/#{$typeface}.woff') format('woff'),
+    url('@/fonts/#{$directory}/#{$typeface}.ttf') format('truetype'),
+    url('@/fonts/#{$directory}/#{$typeface}.eot') format('embedded-opentype');
+    font-weight: 400;
+    font-style: normal;
+} 
+
+@mixin mdicon() {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    // Support for all WebKit browsers.
+    -webkit-font-smoothing: antialiased;
+    // Support for Safari and Chrome.
+    text-rendering: optimizeLegibility;
+
+    // Support for Firefox.
+    -moz-osx-font-smoothing: grayscale;
+
+    // Support for IE.
+    font-feature-settings: 'liga';
+}
+
+// ---------------------------------------------------------- //
+// COMMON MIXINS
+// ---------------------------------------------------------- //
+// Auto left/right margins
+@mixin push--auto {
+    margin: { 
+        left: auto;
+        right: auto;
+    }
+}
+
+// Pseudo element boilerplate
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+// Responsive ratios
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+    $padding: unquote( ( $y / $x ) * 100 + '%' );
+    @if $pseudo {
+        &:before {
+            @include pseudo($pos: relative);
+            width: 100%;
+            padding-top: $padding;
+        }
+    } @else {
+        padding-top: $padding;
+    }
+}
+
+@mixin touch-scroll(){
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+}
+
+@mixin touch-callout($value:none){
+    user-select: $value;
+}
+
+@mixin hide(){
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@mixin hide-visually(){
+    border: 0;
+    clip-path: inset(50%);
+    display: inline-block;
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@mixin nomarginpadding(){
+    margin: 0; padding: 0;
+}
+
+@mixin boxmodel() {
+    box-sizing: border-box;
+}
+
+@mixin columngen($column-count: 12, $columns: 1, $property: padding-left) {
+    #{$property}: ((100% / $column-count) * $columns) + 0%;
+}
+
+@mixin fixedunit-property($column-count: 12, $columns: 1, $width: $app-max-width, $property: flex ) {
+
+    @if $property == flex {
+        flex: 0 0 ceil(($width / $column-count) * $columns) + 0px;
+    } @else if $property == max-width {
+        max-width: ceil(($width / $column-count) * $columns) + 0px;
+    } @else {
+        #{$property}: ceil(($width / $column-count) * $columns) + 0px;
+    }
+}
+
+// ---------------------------------------------------------- //
+// BOXSHADOW HELPER
+// ---------------------------------------------------------- //
+@mixin elevation($dp:0, $transition: false) {
+    @if $transition {
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+    @if $dp==0 {
+        box-shadow: none
+    }
+    @else if $dp==1 {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.12);
+    }
+    @else if $dp==2 {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    @else if $dp==3 {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    @else if $dp==4 {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+    @else if $dp==6 {
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+    @else if $dp==8 {
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+    @else {
+        @error "Invalid argument for $dp: {" + $dp + "}, look at the method definition for possible values";
+    }
+}
+
+@mixin shadowbox($size:s) {
+    @if $size==s {
+        box-shadow: 0 13px 43px 0 rgba($md-purple-300,.1);
+    }
+    @else if $size==xl {
+        box-shadow: 0 60px 135px rgba($black,.14), 0 15px 65px rgba($black,.14)
+    }
+    @else {
+        box-shadow: 0 13px 43px 0 rgba($md-purple-300,.1);
+    }
+}
+
+@mixin text-shadow($color:$black) {
+    text-shadow: 0px 1px 2px rgba($color, 0.5);
+}
+
+// ---------------------------------------------------------- //
+// ANIMATION / TRANSITIONS  
+// ---------------------------------------------------------- //
+@mixin hardware($backface: true, $perspective: 1000px) {
+    @if $backface {
+        backface-visibility: hidden;
+    }
+    perspective: $perspective;
+}
+
+@mixin transition($milliseconds:300ms){
+    transition: all $milliseconds ease;
+}
+
+@mixin ease-in-out-back($duration:300ms){
+    transition: all $duration cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+
+@mixin easing-standard($duration:300ms){
+    transition: all $duration cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+@mixin easing-decelerate($duration:300ms){
+    transition: all $duration cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+@mixin easing-accelerate($duration:300ms){
+    transition: all $duration cubic-bezier(0.4, 0.0, 1, 1);
+}
+
+// ---------------------------------------------------------- //
+// TRANSFORMS
+// ---------------------------------------------------------- //
+@mixin position($x, $y: 0, $z: 0){
+    transform: translate3d($x, $y, $z);
+}
+
+@mixin scale($n){
+    transform: scale($n);
+}
+
+// ---------------------------------------------------------- //
+// TYPOGRAPHY
+// ---------------------------------------------------------- //
+@mixin font-sans-serif($size: false, $colour: false, $weight: false,  $lh: false) {
+    font-family: Helvetica, Roboto, Ariel, sans-serif;
+    @if $size { font-size: $size; }
+    @if $colour { color: $colour; }
+    @if $weight { font-weight: $weight; }
+    @if $lh { line-height: $lh; }
+}
+
+@mixin nowrap($truncation-boundary: 100%) {
+    max-width: $truncation-boundary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin optimize-text( $val: optimizelegibility ){
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+}
+
+@mixin hyphens( $val: auto ){
+    -webkit-hyphens: $val;
+    -moz-hyphens: $val;
+    -ms-hyphens: $val;
+    hyphens: $val;
+}
+
+// ---------------------------------------------------------- //
+// FLEXBOX
+// ---------------------------------------------------------- //
+@mixin center() {
+    align-items: center;
+    justify-content: center;
+}
+
+// ALIGNMENTS
+@mixin center-left($type:row) {
+    @if $type== row {
+        align-items: center;
+        justify-content: flex-start;
+    }
+    @if $type == column {
+        align-items: flex-start;
+        justify-content: center;
+    }
+}
+
+@mixin center-right($type:row) {
+    @if $type== row {
+        align-items: center;
+        justify-content: flex-end;
+    }
+    @if $type == column {
+        align-items: flex-end;
+        justify-content: center;
+    }    
+}
+
+@mixin center-spaced($type:row) {
+    @if $type== row {
+        align-items: center;
+        justify-content: space-between;
+    }
+    @if $type == column {
+        align-items: space-between;
+        justify-content: center;
+    }      
+}
+
+@mixin top-center($type:row) {
+    @if $type== row {
+        align-items: flex-start;
+        justify-content: center;
+    }
+    @if $type == column {
+        align-items: center;
+        justify-content: flex-start;
+    }  
+}
+
+@mixin top-left($type:row) {
+    @if $type== row {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    @if $type == column {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }  
+}
+
+@mixin top-right($type:row) {
+    @if $type== row {
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+    @if $type == column {
+        align-items: flex-end;
+        justify-content: flex-start;
+    }  
+}
+
+@mixin bottom-left($type:row) {
+    @if $type== row {
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+    @if $type == column {
+        align-items: flex-end;
+        justify-content: flex-start;
+    }  
+}
+
+@mixin bottom-right($type:row) {
+    @if $type== row {
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+    @if $type == column {
+        align-items: flex-end;
+        justify-content: flex-end;
+    }  
+}
+
+// ---------------------------------------------------------- //
+// LISTS
+// ---------------------------------------------------------- //
+@mixin resetlist () {
+    position: relative;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    @include boxmodel();
+    
+    li {
+        @include boxmodel();
+        list-style: none;
+        margin: 0;
+        padding: 0;    
+    }
+}
+
+// ---------------------------------------------------------- //
+// FORMS
+// ---------------------------------------------------------- //
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+@mixin input-no-appearance {
+    border: none;
+    border-radius: 0;
+    @include boxmodel();
+    @include nomarginpadding();
+    width: auto;
+    max-width: 100%;
+    overflow: visible;
+
+    background: transparent;
+
+    // inherit font & color from ancestor
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    outline: none;
+    border: none;
+
+    // Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+.
+    line-height: normal;
+    
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    // Corrects inability to style clickable `input` types in iOS
+    -webkit-appearance: none;
+    
+    // Remove excess padding and border in Firefox 4+
+    &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+}
+
+@mixin input-active {
+    &:focus,
+    &:hover,
+    &:active {
+        @content;
+    }
+}
+
+@mixin autofill {
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover, 
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+        @content;
+    }
+}
+
+// ---------------------------------------------------------- //
+// MEDIA QUERIES
+// ---------------------------------------------------------- //
+@mixin mq($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width - 1px;
+        }
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}
+
+// ---------------------------------------------------------- //
+// GRADIENT GENERATOR
+// ---------------------------------------------------------- //
+@mixin gradient($deg: 317deg,$color-start: $md-teal-50, $color-end: $md-green-200) {
+    background: linear-gradient($deg, rgba($color-end,1) 0%, rgba($color-end,1) 12%, rgba($color-start,1) 39%);
+}
+
+// ---------------------------------------------------------- //
+// ATTRIBUTION
+// ---------------------------------------------------------- //
+@mixin attribution($position:relative) {
+    &[data-attribution] {
+        position: $position;
+
+        &:after {
+            content: attr(data-attribution);
+            display: block;
+            position: absolute;
+            z-index: 2;
+            right: 0;
+            bottom: 0;
+            padding: ($XUNIT * .25);
+            opacity: 1;
+            pointer-events: none;
+            
+            @include optimize-text();
+            font-weight: 400;
+            font-size: 12px;
+            color: $white;
+            line-height: 1;
+            letter-spacing: 0.0625em;            
+        }
+    }
+}
+
+// ---------------------------------------------------------- //
+// LAYOUT
+// ---------------------------------------------------------- //
+@mixin baselinegrid($color:$baseline_grid, $size: $typography-baselineheight) {
+    background-size: $size $size;
+    background: linear-gradient($color 1px, transparent 1px) repeat left top / $size $size;
+}
+
+@mixin dev-only() {
+    @at-root html[data-grid="1"] {
+        @content;
+    }
+}
+
+@mixin uigrid( $size: $typography-baselineheight, $color: $baseline-grid ) {
+    position: relative;
+    &:after {
+        display: none;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        min-height: 100%;
+        z-index: 1000;
+        pointer-events: none;
+        @include baselinegrid(rgba($color, .2), $size);
+    }
+}
+
+// ---------------------------------------------------------- //
+// ELEMENTAL
+// ---------------------------------------------------------- //
+@mixin elementaliconfont() {
+    font-family: 'UIElemental Icons' !important;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@mixin font-face($family, $directory, $typeface) {
+    font-family: '#{$family}';
+    src: url('../fonts/#{$directory}/#{$typeface}.woff2') format('woff2');
+    src: url('../fonts/#{$directory}/#{$typeface}.woff') format('woff'),
+    url('../fonts/#{$directory}/#{$typeface}.ttf') format('truetype'),
+    url('../fonts/#{$directory}/#{$typeface}.eot') format('embedded-opentype');
+    font-weight: 400;
+    font-style: normal;
+} 
+
+@mixin elementalicon($key:false) {
+    @if $key {
+        &:before {
+            content: "#{$key}";
+        }
+    }
+}
