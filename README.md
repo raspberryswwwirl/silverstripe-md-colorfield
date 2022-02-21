@@ -1,13 +1,12 @@
 # SilverStripe Material Design Color Field
 
-This is a proof-of-concept field to illustrate how to implement color swatch generation and selection based on the [Material Design color system](https://material.io/design/color/the-color-system.html#tools-for-picking-colors). This implementation makes use of the [TinyColor](https://github.com/bgrins/TinyColor) library to generate each color and calculate contrast ratios for text on those colors. I chose to implement [Vue](https://vuejs.org/) to prototype the user interaction.
+While this is a proof-of-concept to illustrate how to implement color swatch generation/selection based on the [Material Design color system](https://material.io/design/color/the-color-system.html#tools-for-picking-colors), it's a thank you to the SilverStripe community--especially those in the SilverStripe Slack channels--for all of the help getting this concept to work.
 
-**Note:** I didn't want to start injecting this logic into any of the underlying react-enabled fields. There's enough "magic" with these fields maintaining/refreshing their state (and values) after saves in some contexts.
+*(Tear this thing apart, maybe see what you can do to implement it in React, or send me feedback on how to improve this concept).*
 
-By design, a color set is composed of a "Base Color" and "Color Variants"--the variants themselves are generated from
-the base color. While the base color should be mapped to a defined db field, the variant colors must map to a second db field for persistence. This is likely to be replaced with some sort of json serialization to a single field, but for this proof-of-concept, these values are persisted separately.
-### Steps to prepare this module for your own use:
+This implementation makes use of the [TinyColor](https://github.com/bgrins/TinyColor) library to render color and calculate contrast ratios for text displayed on those colors. [Vue](https://vuejs.org/) provides the user interaction and state management to workaround some odd behaviour with SS FormField states.
 
+By design, a color set is composed of a "Base Color" and "Color Variants"--the variants themselves are generated from the base color. While the base color should be persisted to its own db field, the variant colors must be persisted to a second db field. In the future, this is likely to be replaced with some sort of json serialization to a single field, but for this proof-of-concept, these values are persisted separately. This has some benefits in that the values can be pre-defined separately in your `config.yml` or `theme.yml`
 
 ## Requirements
 
