@@ -1,0 +1,133 @@
+md-vue-colorpicker {
+    display: flex;
+    position: relative;
+    @include boxmodel();
+
+    width: 100%;
+    max-width: 256px;
+    min-width: 256px;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+:host {
+    md-sheet,
+    md-sheetbody,
+    md-sheettitle,
+    md-colorlist,
+    label.md-swatch,
+    md-swatchlabel,
+    md-swatchkey {
+        display: flex;
+        position: relative;
+        @include boxmodel();
+    }
+
+    md-sheet,
+    md-sheetbody,
+    md-sheettitle,
+    md-colorlist,
+    label.md-swatch {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    md-sheetbody,
+    md-colorlist {
+        flex-flow: column nowrap;
+    }
+
+    md-sheettitle {
+        display: none
+    }
+
+    .md-colorpicker {
+        margin-bottom: $XUNIT;
+    }
+
+    md-colorlist {
+        label.md-swatch {
+            flex-flow: row nowrap;
+            margin-bottom: 1px;
+            line-height: ($XUNIT * 2);
+            padding-left: ($XUNIT * 1);
+            @include easing-standard();
+
+            &[disabled] {
+                pointer-events: none;
+                opacity: .5;
+                @supports (filter: grayscale(80%)) {
+                    filter: grayscale(80%);
+                }
+            }
+
+            &:before,
+            &:after {
+                position: absolute;
+                left: 100%;
+                top: 0;
+                line-height: inherit;
+                padding-left: ($XUNIT * .5);
+                white-space: nowrap;
+                pointer-events: none;
+                opacity: 0.7;
+
+                font-size: 10px;
+                text-transform: uppercase;
+
+                pointer-events: none;
+            }
+
+            &[contrast="poor"] {
+                &:after {
+                    content: 'Insufficient Contrast';
+                    color: $ss-red;
+                }
+                &[base="true"] {
+                    &:after {
+                        content: none
+                    }
+                }
+            }
+
+            &[base="true"] {
+                &:before {
+                    content: 'Base Color';
+                    text-transform: none;
+                    color: $ss-dark;
+                    opacity: 1;
+                    font-size: 12px;
+                }
+            }
+
+            input[type="checkbox"] {
+                position: absolute;
+                margin: 0;
+                left: 0; 
+                top: 50%;
+                z-index: 2;
+                @include position(11px,-50%);
+            }
+        }
+
+        md-swatchlabel {
+            flex: 0 0 100%;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+
+            padding: 0 ($XUNIT * .5);
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+            color: inherit;
+
+            md {
+                &-swatchkey,
+                &-swatchlabel {
+                    color: inherit
+                }
+            }
+        }
+    }
+}

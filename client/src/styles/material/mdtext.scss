@@ -1,0 +1,151 @@
+/**
+ * @link https://material.io/design/typography/the-type-system.html#type-scale
+ */
+mdtext {
+    font-family: $fonts-brand;
+    font-size: 14px;
+    line-height: $XUNIT;
+    text-size-adjust: 100%;
+    color: $md-text-color;
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+
+    @include optimize-text();
+
+    &[scale] {
+        line-height: 1em;
+    }
+
+    &[scale^="h"] {
+        display: block;
+    }
+    
+    &[scale="h1"] {
+        font-size: 96px;
+        font-weight: 300;
+        letter-spacing: -1.5px;
+    }
+
+    &[scale="h2"] {
+        font-size: 60px;
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+    }
+
+    &[scale="h3"] {
+        font-size: 48px;
+        letter-spacing: 0;
+        line-height: 1.167;
+    }
+
+    &[scale="h4"] {
+        font-size: 34px;
+        letter-spacing: 0.25px;
+        line-height: 1.235;
+    }
+    
+    &[scale="h5"] {
+        font-size: 24px;
+        letter-spacing: 0;
+        line-height: 1.334;
+    }
+    
+    &[scale="h6"] {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.15px;
+        line-height: 1.6;
+    }
+
+    &[scale="subtitle1"] {
+        font-size: 16px;
+        letter-spacing: 0.15px;
+    }
+    
+    &[scale="subtitle2"] {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.1px;
+    }
+    
+    &[scale="body1"],
+    &[scale="body2"] {
+        line-height: 1.333;
+        margin-bottom: 28px;
+    }
+
+    &[scale="body1"] {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        opacity: 0.7;
+    }
+
+    &[scale="body2"] {
+        font-size: 15px;
+        letter-spacing: 0.25px;
+    }
+
+    &[scale="button"] {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.25px;
+        text-transform: uppercase;
+    }
+
+    &[scale="caption"] {
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+    }
+
+    &[scale="overline"] {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
+
+    // MARGINS
+    &[gutters="0"] {
+        margin-bottom: 0;
+    }
+    &[gutters="0:n"] {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    &[gutters="1"] {
+        margin-bottom: $XUNIT;
+    }
+    &[gutters="1:n"] {
+        margin-top: $XUNIT;
+        margin-bottom: $XUNIT;
+    }
+
+    &[gutters="2"] {
+        margin-bottom: ($XUNIT * 2);
+    }
+
+    &[gutters="2:n"] {
+        margin-top: ($XUNIT * 2);
+        margin-bottom: ($XUNIT * 2);
+    }
+
+    // SPECIAL
+    &[scale="cardheading"] {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.15px;
+        line-height: 1;
+        // margin-bottom: auto;
+    }
+    
+    &[scale="cardsubheading"] {
+        font-size: 14px;
+        letter-spacing: 0.1px;
+        line-height: 1;
+        margin-top: auto;
+        opacity: 0.7;
+    }    
+}
