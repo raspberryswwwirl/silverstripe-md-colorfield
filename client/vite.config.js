@@ -1,16 +1,40 @@
 import {defineConfig} from 'vite'
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
-import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs'
 import vue from '@vitejs/plugin-vue'
-import bable from 'vite-babel-plugin'
 import path from 'path'
 
-const __path = path.resolve(__dirname, "./src");
+const __production = () => {
+    return !!(process.env.NODE_ENV === 'production')
+}
+
+const __ecma = '2015'
+
+/**
+ * @link https://terser.org/docs/api-reference#minify-options
+ */
+const __terserOptions = {
+    compress: {
+        defaults: false,
+        drop_console: true,
+        unused: false
+    },
+    mangle: {
+        eval: true,
+        module: true,
+        toplevel: true,
+        safari10: true,
+        properties: false
+    },
+    ecma: __ecma,
+    format: {
+        ecma: __ecma,
+        comments: false,
+    }
+}
 
 // https://vitejs.dev/config/
 // https://github.com/vitejs/vite/issues/378#issuecomment-789366197
 export default defineConfig({
-    plugins: [vue(), bable(), viteCommonjs()],
+    plugins: [vue()],
     resolve: {
         alias : {
             '@': path.resolve(__dirname, './src')
@@ -32,25 +56,20 @@ export default defineConfig({
             }
         }
     },
-    optimizeDeps:{
-        esbuildOptions:{
-            plugins:[
-                esbuildCommonjs(['vendor','main']) 
-            ]
-        }
-    },    
     build: {
+        minify: __production() ? 'terser' : false,
         sourcemap: true,
         filenameHashing: false,
         lintOnSave: true,
+        terserOptions: __terserOptions,
         rollupOptions: {
             input: {
-                'md-colorfield': './src/md-colorfield.js'
+                'main': './src/main.js'
             },
             output: {
-              entryFileNames: `assets/rs-[name].js`,
-              chunkFileNames: `assets/rs-[name].js`,
-              assetFileNames: `assets/rs-[name].[ext]`
+              entryFileNames: `assets/[name].js`,
+              chunkFileNames: `assets/[name].js`,
+              assetFileNames: `assets/[name].[ext]`
             }
         }        
     },
