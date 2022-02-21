@@ -45,12 +45,12 @@ export default defineConfig({
         lintOnSave: true,
         rollupOptions: {
             input: {
-                'main': './src/main.js'
+                'md-colorfield': './src/md-colorfield.js'
             },
             output: {
-              entryFileNames: `assets/[name].js`,
-              chunkFileNames: `assets/[name].js`,
-              assetFileNames: `assets/[name].[ext]`
+              entryFileNames: `assets/rs-[name].js`,
+              chunkFileNames: `assets/rs-[name].js`,
+              assetFileNames: `assets/rs-[name].[ext]`
             }
         }        
     },

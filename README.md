@@ -1,18 +1,11 @@
-# SilverStripe supported module skeleton
+# SilverStripe Material Design Color Field
 
-A useful skeleton to more easily create a [Silverstripe Module](https://docs.silverstripe.org/en/4/developer_guides/extending/modules/) that conform to the
-[Module Standard](https://docs.silverstripe.org/en/developer_guides/extending/modules/#module-standard).
+This is a proof-of-concept field to illustrate how to implement color swatch generation and selection based on the [Material Design color system](https://material.io/design/color/the-color-system.html#tools-for-picking-colors). This implementation makes use of the [TinyColor](https://github.com/bgrins/TinyColor) library to generate each color and calculate contrast ratios for text on those colors. I chose to implement [Vue](https://vuejs.org/) to prototype the user interaction.
 
-This readme contains descriptions of the parts of this module base you should customise to meet you own module needs.
-For example, the module name in the H1 above should be you own module name, and the description text you are reading now
-is where you should provide a good short explanation of what your module does.
+**Note:** I didn't want to start injecting this logic into any of the underlying react-enabled fields. There's enough "magic" with these fields maintaining/refreshing their state (and values) after saves in some contexts.
 
-Where possible we have included default text that can be included as is into your module and indicated in 
-other places where you need to customise it
-
-Below is a template of the sections of your readme.md you should ideally include to met the Module Standard 
-and help others make use of your modules.
-
+By design, a color set is composed of a "Base Color" and "Color Variants"--the variants themselves are generated from
+the base color. While the base color should be mapped to a defined db field, the variant colors must map to a second db field for persistence. This is likely to be replaced with some sort of json serialization to a single field, but for this proof-of-concept, these values are persisted separately.
 ### Steps to prepare this module for your own use:
 
 
@@ -23,7 +16,7 @@ and help others make use of your modules.
 
 ## Installation
 ```
-composer require twa-silverstripe/silverstripe-basemodule 4.x-dev
+composer require raspberryswwwirl/silverstripe-md-colorfield:dev-develop
 ```
 
 ## License
@@ -36,7 +29,7 @@ it is one of the most permissive and open licenses.
  * [Documentation readme](docs/en/readme.md)
 
 ## Maintainers
- * The Web Advisors <websites@thewebadvisors.ca>
+ * RaspberrySwwwirl <hello@raspberryswwwirl.com>
  
 ## Bugtracker
 Bugs are tracked in the issues section of this repository. Before submitting an issue please read over 
