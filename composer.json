@@ -10,13 +10,13 @@
     "authors": [
         {
             "name": "RaspberrySwwwirl",
-            "email": "hell@raspberryswwwirl.com"
+            "email": "hello@raspberryswwwirl.com"
         }
     ],
     "require": {
         "silverstripe/framework": "~4.0",
         "silverstripe/cms": "~4.0"
-    },    
+    },
     "autoload": {
         "psr-4": {
             "RS\\": "src/RS"
@@ -24,7 +24,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "develop"
+            "dev-master": "v1.0.0-dev"
         },
         "expose": [
             "client/dist"
