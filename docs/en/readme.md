@@ -76,7 +76,7 @@ class SiteConfigThemeExtension extends DataExtension {
     # HELPER METHODS
     # +------------------------------------------------------------------------+
     /**
-     * Simple helper method to validate HEX values of needed
+     * Simple helper method to validate HEX values if needed
      * 
      * @return bool
      */
