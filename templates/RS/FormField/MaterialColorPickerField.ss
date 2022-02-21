@@ -1,2 +1,2 @@
 <input $AttributesHTML />
-<md-vue-colorpicker class="md-materialcolorpicker" value="{$Value.RAW}" selections="{$Selections.RAW}" selectionsfield="{$SelectionsField.ATT}" field="{$ID.RAW}"></md-vue-colorpicker>
+<md-vue-colorpicker class="md-materialcolorpicker" value="{$Value.RAW}" selections="{$Selections.RAW}" selectionsfield="{$SelectionsField.RAW}" field="{$ID.RAW}"></md-vue-colorpicker>

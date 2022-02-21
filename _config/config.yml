@@ -1,5 +1,6 @@
 ---
-Name: SilverStripe-RaspberrySwwwirl Colorfield
+Name: raspberryswwirl-md-colorfield-config
+After: "*"
 ---
 SilverStripe\Admin\LeftAndMain:
   extensions:

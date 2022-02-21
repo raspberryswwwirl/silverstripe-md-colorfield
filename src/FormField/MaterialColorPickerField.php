@@ -16,7 +16,7 @@ class MaterialColorPickerField extends TextField {
     }
 
     public function getSelections() {
-        return json_encode($this->selections);//htmlspecialchars(json_encode($this->selections));
+        return htmlspecialchars(json_encode($this->selections));
     }
 
     public function getSelectionsField() {

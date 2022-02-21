@@ -1,20 +1,12 @@
-# SilverStripe supported module skeleton
+# SilverStripe Material Design Color Field
 
-A useful skeleton to more easily create a [Silverstripe Module](https://docs.silverstripe.org/en/4/developer_guides/extending/modules/) that conform to the
-[Module Standard](https://docs.silverstripe.org/en/developer_guides/extending/modules/#module-standard).
+While this is a proof-of-concept to illustrate how to implement color swatch generation/selection based on the [Material Design color system](https://material.io/design/color/the-color-system.html#tools-for-picking-colors), it's a thank you to the SilverStripe community--especially those in the SilverStripe Slack channels--for all of the help getting this concept to work.
 
-This readme contains descriptions of the parts of this module base you should customise to meet you own module needs.
-For example, the module name in the H1 above should be you own module name, and the description text you are reading now
-is where you should provide a good short explanation of what your module does.
+*(Tear this thing apart, maybe see what you can do to implement it in React, or send me feedback on how to improve this concept).*
 
-Where possible we have included default text that can be included as is into your module and indicated in 
-other places where you need to customise it
+This implementation makes use of the [TinyColor](https://github.com/bgrins/TinyColor) library to render color and calculate contrast ratios for text displayed on those colors. [Vue](https://vuejs.org/) provides the user interaction and state management to workaround some odd behaviour with SS FormField states.
 
-Below is a template of the sections of your readme.md you should ideally include to met the Module Standard 
-and help others make use of your modules.
-
-### Steps to prepare this module for your own use:
-
+By design, a color set is composed of a "Base Color" and "Color Variants"--the variants themselves are generated from the base color. While the base color should be persisted to its own db field, the variant colors must be persisted to a second db field. In the future, this is likely to be replaced with some sort of json serialization to a single field, but for this proof-of-concept, these values are persisted separately. This has some benefits in that the values can be pre-defined separately in your `config.yml` or `theme.yml`
 
 ## Requirements
 
@@ -23,7 +15,7 @@ and help others make use of your modules.
 
 ## Installation
 ```
-composer require twa-silverstripe/silverstripe-basemodule 4.x-dev
+composer require raspberryswwwirl/silverstripe-md-colorfield:dev-develop
 ```
 
 ## License
@@ -36,7 +28,7 @@ it is one of the most permissive and open licenses.
  * [Documentation readme](docs/en/readme.md)
 
 ## Maintainers
- * The Web Advisors <websites@thewebadvisors.ca>
+ * RaspberrySwwwirl <hello@raspberryswwwirl.com>
  
 ## Bugtracker
 Bugs are tracked in the issues section of this repository. Before submitting an issue please read over 
