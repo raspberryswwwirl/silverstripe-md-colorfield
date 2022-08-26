@@ -1,7 +1,6 @@
 import { defineCustomElement } from 'vue'
 import MaterialColorPicker from '@/components/MaterialColorPicker.ce.vue'
-import Utils from '@/lib/utils'
-import '@/styles/md-colorfield.scss';
+import '@/styles/main.scss';
 
 /**
  * @link https://vuejs.org/guide/extras/web-components.html#building-custom-elements-with-vue
