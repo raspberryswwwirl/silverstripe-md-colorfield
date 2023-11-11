@@ -6,7 +6,8 @@ use RS\Utils\Log;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\SSViewer;
 
-trait DataListTrait {
+trait DataListTrait
+{
 
     /**
      * @var ArrayData
@@ -20,27 +21,29 @@ trait DataListTrait {
 
     /**
      * Set a list of values rendered into a <datalist> tag (HTMLDataListElement)
-     * @param ArrayData $list_options
      * @param string $id optional datalist id attribute
      * @return FormField
      */
-    public function setDataList(ArrayData $list_options, $id = null) {
+    public function setDataList(ArrayData $list_options, $id = null)
+    {
         $this->InputDataList = $list_options;
-        if($id) {
+        if ($id) {
             $this->ListID = $id;
             $this->setAttribute('list', $this->ListID);
             $this->InputDataList->setField('ID', $this->ListID);
         }
+
         return $this;
     }
 
-    public function getDataList() {
+    public function getDataList()
+    {
         return $this->InputDataList;
     }
 
-    public function DataList() {
+    public function DataList()
+    {
         $viewer = new SSViewer('RS\\Forms\\DataList');
-        $output = $viewer->process($this->InputDataList);
-        return $output;
+        return $viewer->process($this->InputDataList);
     }
 }
