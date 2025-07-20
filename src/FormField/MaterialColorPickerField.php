@@ -2,6 +2,7 @@
 
 namespace RS\FormField;
 
+use Override;
 use SilverStripe\Forms\TextField;
 
 class MaterialColorPickerField extends TextField
@@ -28,6 +29,7 @@ class MaterialColorPickerField extends TextField
         return sprintf("Form_EditForm_%s", str_replace('Form_EditForm_', '', (string) $this->selections_field));
     }
 
+    #[Override]
     public function getAttributes()
     {
         $attributes = [
