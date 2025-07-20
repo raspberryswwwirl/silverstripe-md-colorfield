@@ -2,8 +2,7 @@
 
 namespace RS\Traits;
 
-use RS\Utils\Log;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\ArrayData;
 use SilverStripe\View\SSViewer;
 
 trait DataListTrait
@@ -43,7 +42,7 @@ trait DataListTrait
 
     public function DataList()
     {
-        $viewer = new SSViewer('RS\\Forms\\DataList');
+        $viewer = SSViewer::create('RS\\Forms\\DataList');
         return $viewer->process($this->InputDataList);
     }
 }
