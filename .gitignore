@@ -58,6 +58,7 @@ Thumbs.db
 composer.lock
 
 /vendor/
+_resources
 /resources/
 /resources/*
 
